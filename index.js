@@ -8,6 +8,8 @@ const Routes=require('./Routes/index');
 //to read form data
 app.use(express.urlencoded());
 
+app.set('view engine','ejs');
+app.set('views','./');
 //routes
 app.use('/',Routes);
 
