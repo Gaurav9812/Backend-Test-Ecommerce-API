@@ -33,10 +33,12 @@ module.exports.index= async function(req,res){
 
 //function to increase seq by 1 whenever called which is further used as _id of roduct
 async function getNextSequence(name) {
-  var ret =await Counter.findOneAndUpdate( { _id: name }, { $inc: { seq: 1 } },
-         { new: true }
+  var ret =await Counter.findOneAndUpdate(
+        { _id: name },
+        { $inc: { seq: 1 } },
+        { new: true }
   );
-         console.log(ret);
+        console.log(ret);
   return ret.seq;
 }
 
@@ -44,14 +46,14 @@ async function getNextSequence(name) {
 module.exports.create=async function(req,res){
       try{  
        //if product of same name existed in list
-        let ifExist= await Product.findOne({name:req.body.name})
-       
-       if(ifExist!=null)
-       {
-         return await res.json({
-           message:"product already exist"
-         })
-       }
+        let ifExist= await Product.findOne({name:req.body.name});
+
+      if(ifExist!=null)
+      {
+        return await res.json(404,{
+          message:"product already exist"
+        })
+      }
 
         let length= (await Counter.find({})).length;
           let id;
