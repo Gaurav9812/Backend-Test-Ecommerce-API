@@ -1,7 +1,7 @@
 
 const express=require('express');
 const router=express.Router();
-const productController=require('../cotrollers/product_contoler');
+const productController=require('../controllers/product_contoler');
 
 //to Fetch all product function
 router.get('/',productController.index);
